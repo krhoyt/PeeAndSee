@@ -1,0 +1,49 @@
+#chart {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: 
+    "title title title title title title title title title" 
+    "units labels labels labels labels labels labels labels labels" 
+    "units bars bars bars bars bars bars bars bars";
+  height: 160px;
+}
+
+#chart .bars { 
+  grid-area: bars; 
+}
+
+#chart .labels { 
+  border-bottom: solid 1px rgb( 225, 225, 225 );
+  display: flex;
+  flex-direction: row;
+  grid-area: labels;   
+  margin: 0 12px 0 8px;
+}
+
+#chart .labels > p {
+  color: #4b4b4b;
+  flex-basis: 0;
+  flex-grow: 1;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  padding: 0;
+  text-align: center;   
+}
+
+#chart .title { 
+  color: #6e6e6e;
+  font-size: 11px;
+  grid-area: title;   
+  margin: 12px 0 10px 0;
+  padding: 0;
+  text-transform: uppercase;  
+}
+
+#chart .units { 
+  color: #6e6e6e;  
+  font-size: 11px;  
+  grid-area: units;  
+  margin: 14px 0 0 12px; 
+  padding: 0;   
+}

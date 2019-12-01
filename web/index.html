@@ -1,0 +1,105 @@
+<html>
+<head>
+
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pee &amp; See</title>
+
+<!-- Google Fonts -->
+<!-- Adobe Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
+
+<!-- Application styles -->
+<link href="style/app.css" rel="stylesheet">
+<link href="style/main.css" rel="stylesheet">
+<link href="style/count.css" rel="stylesheet">
+<link href="style/daily.css" rel="stylesheet">
+<link href="style/chart.css" rel="stylesheet">
+<link href="style/list.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Main screen (landing) -->
+<!-- TODO: Login screen -->
+<div id="main" class="screen">
+
+  <!-- Daily count -->
+  <h4 id="count"></h4>
+
+  <!-- Daily statistics -->
+  <div class="overview">
+    <div class="daily">
+      <p></p>
+      <p>Since Last</p>
+    </div>
+    <div class="daily">
+      <p></p>
+      <p>Time Between</p>
+    </div> 
+  </div>
+
+  <div class="card">
+    
+    <!-- Chart over time -->    
+    <div id="chart">
+      <p class="title">Average Time Between Pees Over Last 30 Days</p>
+      <p class="units">0h</p>
+      <div class="labels">
+        <p>Last</p>
+        <p>Today</p>
+        <p>3</p>
+        <p>5</p>
+        <p>7</p>
+        <p>14</p>
+        <p>21</p>
+        <p>30</p>        
+      </div>
+      <p class="bars">&nbsp;</p>
+    </div>
+
+    <!-- Commands -->
+    <div class="actions">
+      <button class="quiet"></button>
+      <div class="gap"></div>
+      <button class="primary">Old Pee</button>
+      <button class="command">New Pee</button>
+    </div>
+
+  </div>
+
+  <!-- Columns -->
+  <div class="columns">
+    <p>Date Logged</p>
+    <p>Time Beetween</p>
+  </div>
+
+  <!-- List -->
+  <ul id="list"></ul>
+
+</div>
+
+<!-- Row -->
+<template>
+  <li>
+    <div class="light"></div>
+    <p></p>
+    <p>2h 34m</p>
+  </li>  
+</template>
+
+<!-- Date functions -->
+<script src="lib/moment.js"></script>
+
+<!-- Application logic -->
+<script src="script/screen.js"></script>
+<script src="script/count.js"></script>
+<script src="script/daily.js"></script>
+<script src="script/chart.js"></script>
+<script src="script/list.js"></script>
+<script src="script/main.js"></script>
+<script src="script/app.js"></script>
+
+</body>
+</html>

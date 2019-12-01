@@ -1,0 +1,44 @@
+body {
+  background-color: #f5f5f5;
+  color: #2c2c2c;
+  font-family: 'Source Sans Pro', sans-serif;  
+  text-align: center;
+}
+
+button {
+  background: none;
+	background-position: left 14px center;
+	background-repeat: no-repeat;
+  background-size: 18px;  
+  border: none;
+  font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+  font-weight: 700;  
+  height: 32px;  
+  outline: none;  
+	padding: 0 14px 0 14px;        
+}
+
+button.command {
+  background-color: rgb( 13, 102, 208 );   
+	border-radius: 18px;
+  color: white;
+  line-height: 32px;	
+}
+
+button.primary {
+	border: solid 2px rgb( 75, 75, 75 );
+	border-radius: 18px;
+  color:rgb( 75, 75, 75 );
+  line-height: 28px;	
+}
+
+.screen {
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

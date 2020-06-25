@@ -2,7 +2,7 @@
   <defs>
     <style>
       .fill {
-        fill: rgb( 75, 75, 75 );
+        fill: #2c2c2c;
       }
 
       

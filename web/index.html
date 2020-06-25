@@ -2,7 +2,7 @@
 <head>
 
 <!-- Mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 <title>Pee &amp; See</title>
 
@@ -10,96 +10,218 @@
 <!-- Adobe Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
 
-<!-- Application styles -->
-<link href="style/app.css" rel="stylesheet">
-<link href="style/main.css" rel="stylesheet">
-<link href="style/count.css" rel="stylesheet">
-<link href="style/daily.css" rel="stylesheet">
-<link href="style/chart.css" rel="stylesheet">
-<link href="style/list.css" rel="stylesheet">
+<style>
+body {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+mx-table {
+  margin: 0 12px 12px 12px;
+}
+
+.actions {
+  border-top: solid 1px #e1e1e1;
+  margin: 0 12px 0 12px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: solid 1px #e1e1e1;
+  border-radius: 4px;
+  margin: 12px;
+}
+</style>
+
+<!-- Standard components -->
+<script src="comp/box.js"></script>
+<script src="comp/chart.js"></script>
+<script src="comp/column.js"></script>
+<script src="comp/label.js"></script>
+<script src="comp/level.js"></script>
+<script src="comp/spacer.js"></script>
+<script src="comp/table.js"></script>
+<script src="comp/button.js"></script>
 
 </head>
 <body>
 
-<!-- Main screen (landing) -->
-<!-- TODO: Login screen -->
-<div id="main" class="screen">
+<!-- Daily count -->
+<mx-label
+  font-size="18"
+  font-weight="600"
+  padding-bottom="12"
+  padding-top="12"
+  text="You have logged 0 pees today."
+  text-align="center">
+</mx-label>
 
-  <!-- Daily count -->
-  <h4 id="count"></h4>
+<!-- Daily statistics -->
+<hoyt-box
+  direction="row">
 
-  <!-- Daily statistics -->
-  <div class="overview">
-    <div class="daily">
-      <p></p>
-      <p>Since Last</p>
-    </div>
-    <div class="daily">
-      <p></p>
-      <p>Time Between</p>
-    </div> 
-  </div>
+  <!-- Since last-->
+  <hoyt-box
+    basis="0"
+    grow="1">
+    <mx-label 
+      font-size="40"
+      font-weight="600"
+      text="0"
+      text-align="center">
+    </mx-label>
+    <mx-label 
+      font-size="16"
+      text="Since Last"
+      text-align="center">
+    </mx-label>
+  </hoyt-box>
 
-  <div class="card">
-    
-    <!-- Chart over time -->    
-    <div id="chart">
-      <p class="title">Average Time Between Pees Over Last 30 Days</p>
-      <p class="units">0h</p>
-      <div class="labels">
-        <p>Last</p>
-        <p>Today</p>
-        <p>3</p>
-        <p>5</p>
-        <p>7</p>
-        <p>14</p>
-        <p>21</p>
-        <p>30</p>        
-      </div>
-      <p class="bars">&nbsp;</p>
-    </div>
+  <!-- Today -->
+  <hoyt-box
+    basis="0"
+    grow="1">
+    <mx-label 
+      font-size="40"
+      font-weight="600"    
+      text="0"
+      text-align="center">
+    </mx-label>
+    <mx-label 
+      font-size="16"
+      text="Today"
+      text-align="center">
+    </mx-label>
+  </hoyt-box>  
 
-    <!-- Commands -->
-    <div class="actions">
-      <button class="quiet"></button>
-      <div class="gap"></div>
-      <button class="primary">Old Pee</button>
-      <button class="command">New Pee</button>
-    </div>
+</hoyt-box>
 
-  </div>
+<!-- Card -->
+<hoyt-box 
+  basis="0"
+  class="card"
+  grow="1">
 
-  <!-- Columns -->
-  <div class="columns">
-    <p>Date Logged</p>
-    <p>Time Beetween</p>
-  </div>
+  <!-- Title -->
+  <mx-label
+    color="#6e6e6e"
+    font-size="11"
+    padding-bottom="10"
+    padding-top="12"
+    text="Average Time Between Last &num; Pees"
+    text-align="center"
+    text-transform="uppercase">
+  </mx-label>
 
-  <!-- List -->
-  <ul id="list"></ul>
+  <!-- Chart -->
+  <pee-chart
+    grow="1">
+  </pee-chart>
 
-</div>
+  <!-- Footer -->
+  <hoyt-box
+    class="actions"
+    direction="row"
+    padding-bottom="12"
+    padding-top="12">
+    <mx-button
+      icon="/img/export.svg"
+      kind="icon">
+    </mx-button>
+    <hoyt-spacer
+      grow="1">
+    </hoyt-spacer>
+    <mx-button
+      text="Old">
+    </mx-button>
+    <hoyt-spacer
+      width="12">
+    </hoyt-spacer>
+    <mx-button
+      icon="/img/edit.svg"
+      kind="command"
+      text="New">
+    </mx-button>
+  </hoyt-box>
 
-<!-- Row -->
-<template>
-  <li>
-    <div class="light"></div>
-    <p></p>
-    <p>2h 34m</p>
-  </li>  
-</template>
+</hoyt-box>
 
-<!-- Date functions -->
-<script src="lib/moment.js"></script>
+<!-- History -->
+<mx-table>
+  <mx-column
+    renderer="pee-level"
+    width="50">
+  </mx-column>
+  <mx-column
+    label-function="logged"
+    text="Date Logged">
+  </mx-column>
+  <mx-column
+    label-function="between"
+    text="Time Between"
+    width="120">
+  </mx-column>
+</mx-table>
 
-<!-- Application logic -->
-<script src="script/screen.js"></script>
-<script src="script/count.js"></script>
-<script src="script/daily.js"></script>
-<script src="script/chart.js"></script>
-<script src="script/list.js"></script>
-<script src="script/main.js"></script>
-<script src="script/app.js"></script>
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"></script>
+
+<!-- Application -->
+<script>
+class PeeSee {
+  constructor() {
+    // Elements
+    this.$table = document.querySelector( 'mx-table' );
+    this.$chart = document.querySelector( 'pee-chart' );
+
+    const data = [
+      {level: 'green', logged_at: '2020-06-23T00:03:06.099Z', between: 1.20},      
+      {level: 'red', logged_at: '2020-06-24T00:03:06.099Z', between: 2.10},
+      {level: 'yellow', logged_at: '2020-06-25T00:03:06.099Z', between: 1.20},
+      {level: 'green', logged_at: '2020-06-23T00:03:06.099Z', between: 1.20},      
+      {level: 'red', logged_at: '2020-06-24T00:03:06.099Z', between: 2.10},
+      {level: 'yellow', logged_at: '2020-06-25T00:03:06.099Z', between: 1.20},
+      {level: 'green', logged_at: '2020-06-23T00:03:06.099Z', between: 1.20},      
+      {level: 'red', logged_at: '2020-06-24T00:03:06.099Z', between: 2.10},
+      {level: 'yellow', logged_at: '2020-06-25T00:03:06.099Z', between: 1.20}            
+    ];
+
+    this.$table.data = data;
+  }
+}  
+
+// Label functions
+// For table formatting
+// https://speedysense.com/convert-float-to-time-in-javascript
+function between( data ) {
+  const ratio = 1 / 60;
+
+  // Hours
+  const hour = Math.floor( data.between );
+  
+  // Seperate decimal
+  let decimal = data.between - hour;
+
+  // Minutes
+  // Round to nearest minute
+  decimal = ratio * Math.round( decimal / ratio );
+  const minute = Math.floor( decimal * 60 );
+
+  // Format
+  return `${hour}h ${minute}m`;
+}
+
+function logged( data ) {
+  return dateFns.format( new Date( data.logged_at ), 'd MMM YYYY @ h:mm A' );
+}
+
+// Main
+const app = new PeeSee();
+</script>
 
 </body>
 </html>

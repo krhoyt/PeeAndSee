@@ -1,0 +1,168 @@
+<html>
+<head>
+
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Pee &amp; See</title>
+
+<!-- Google Fonts -->
+<!-- Adobe Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
+
+<!-- Vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- Application styles -->
+<link href="style/pee-and-see.css" rel="stylesheet">
+
+<!-- Components -->
+<script src="comp/box.js"></script>
+<script src="comp/chart.js"></script>
+<script src="comp/column.js"></script>
+<script src="comp/label.js"></script>
+<script src="comp/level.js"></script>
+<script src="comp/spacer.js"></script>
+<script src="comp/table.js"></script>
+<script src="comp/button.js"></script>
+
+</head>
+<body>
+
+<!-- Vue root container -->
+<div id="app">
+
+  <!-- Daily count -->
+  <mx-label
+    font-size="18"
+    font-weight="600"
+    id="log"
+    padding-bottom="12"
+    padding-top="12"
+    :text="logged"
+    text-align="center">
+  </mx-label>
+
+  <!-- Daily statistics -->
+  <hoyt-box
+    direction="row">
+
+    <!-- Since last-->
+    <hoyt-box
+      basis="0"
+      grow="1">
+      <mx-label 
+        font-size="40"
+        font-weight="600"
+        id="last"
+        text="0"
+        text-align="center">
+      </mx-label>
+      <mx-label 
+        font-size="16"
+        text="Since Last"
+        text-align="center">
+      </mx-label>
+    </hoyt-box>
+
+    <!-- Today -->
+    <hoyt-box
+      basis="0"
+      grow="1">
+      <mx-label 
+        font-size="40"
+        font-weight="600"    
+        id="today"
+        text="0"
+        text-align="center">
+      </mx-label>
+      <mx-label 
+        font-size="16"
+        text="Today"
+        text-align="center">
+      </mx-label>
+    </hoyt-box>  
+
+  </hoyt-box>
+
+  <!-- Card -->
+  <hoyt-box 
+    basis="0"
+    class="card"
+    grow="1">
+
+    <!-- Title -->
+    <mx-label
+      color="#6e6e6e"
+      font-size="11"
+      padding-bottom="10"
+      padding-top="12"
+      text="Average Time Between Last &num; Pees"
+      text-align="center"
+      text-transform="uppercase">
+    </mx-label>
+
+    <!-- Chart -->
+    <pee-chart
+      grow="1">
+    </pee-chart>
+
+    <!-- Footer -->
+    <hoyt-box
+      class="actions"
+      direction="row"
+      padding-bottom="12"
+      padding-top="12">
+      <mx-button
+        icon="/img/export.svg"
+        id="export"
+        kind="icon">
+      </mx-button>
+      <hoyt-spacer
+        grow="1">
+      </hoyt-spacer>
+      <mx-button
+        id="old"
+        text="Old">
+      </mx-button>
+      <hoyt-spacer
+        width="12">
+      </hoyt-spacer>
+      <mx-button
+        icon="/img/add.svg"
+        id="add"
+        kind="command"
+        text="New">
+      </mx-button>
+    </hoyt-box>
+
+  </hoyt-box>
+
+  <!-- History -->
+  <mx-table>
+    <mx-column
+      renderer="pee-level"
+      width="50">
+    </mx-column>
+    <mx-column
+      label-function="logged"
+      text="Date Logged">
+    </mx-column>
+    <mx-column
+      label-function="between"
+      text="Time Between"
+      width="120">
+    </mx-column>
+  </mx-table>
+
+</div>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"></script>
+
+<!-- Application -->
+<script src="script/helpers.js"></script>
+<script src="script/pee-and-see.js"></script>
+
+</body>
+</html>
